@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
+import ItemDetaliContainer from "./components/ItemDetailContainer/ItemDetaliContainer";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
-  const [suma, setSuma] = useState(0);
-
-  const sumar = () => {
-    setSuma(suma + 1);
+  const onAdd = (count) => {
+    console.log(count);
   };
+
   return (
     <>
-      <NavBar />
-      <ItemListContainer greeting="Lista de productos" />
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route
+            path="/"
+            element={<ItemListContainer greeting="Lista de productos" />}
+          />
+          <Route path="/category/:cid" element={<ItemListContainer />} />
 
-      <div className=" flex justify-center items-center mt-5">
-        <label className="mr-3">{suma}</label>
-        <button
-          onClick={sumar}
-          className="border border-black w-[40px] rounded"
-        >
-          +1
-        </button>
-      </div>
+          <Route path="/detalle/:pid" element={<ItemDetaliContainer />} />
+        </Routes>
+      </Router>
     </>
   );
 }
