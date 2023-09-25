@@ -1,6 +1,6 @@
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { mFetch } from "../../utils/mockFetch";
 import ItemDetail from "./ItemDetail/ItemDetail";
 
 const ItemDetaliContainer = () => {
@@ -10,12 +10,18 @@ const ItemDetaliContainer = () => {
   console.log(pid);
 
   useEffect(() => {
-    mFetch(Number(pid))
+    /*     mFetch(Number(pid))
       .then((resp) => {
         console.log(resp);
         setProduct(resp);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); */
+
+    const db = getFirestore();
+    const queryDoc = doc(db, "products", pid);
+    getDoc(queryDoc)
+      .then((resp) => ({ id: resp.id, ...resp.data() }))
+      .then((resp) => setProduct(resp));
   }, []);
 
   return (

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import { mFetch } from "../../utils/mockFetch";
 import ItemList from "../ItemList.jsx/ItemList";
 
 const ItemListContainer = (props) => {
@@ -12,6 +18,36 @@ const ItemListContainer = (props) => {
   console.log(cid);
 
   useEffect(() => {
+    const db = getFirestore();
+    const queryCollections = collection(db, "products");
+    if (cid) {
+      const queryCollectionFilter = query(
+        queryCollections,
+        where("category", "==", cid)
+      );
+      getDocs(queryCollectionFilter)
+        .then((respuesta) =>
+          setProduct(
+            respuesta.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
+          )
+        )
+ 
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    } else {
+      getDocs(queryCollections)
+        .then((respuesta) =>
+          setProduct(
+            respuesta.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
+          )
+        )
+
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    }
+  }, [cid]);
+
+  /*   useEffect(() => {
     if (cid) {
       mFetch()
         .then((respuesta) =>
@@ -25,7 +61,7 @@ const ItemListContainer = (props) => {
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     }
-  }, [cid]);
+  }, [cid]); */
 
   console.log(products);
   return (

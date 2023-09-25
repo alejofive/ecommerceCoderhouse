@@ -1,8 +1,16 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useCartContext } from "../../../context/CartContext";
 import ItemCoun from "../../Counter/ItemCoun";
 
 const ItemDetail = ({ product }) => {
+  const [isInCount, setisInCount] = useState(true);
+  const { agregarCarrito } = useCartContext();
+
   const onAdd = (count) => {
     console.log("productos selecconados: ", count);
+    setisInCount(false);
+    agregarCarrito({ ...product, cantidad: count });
   };
 
   return (
@@ -20,8 +28,23 @@ const ItemDetail = ({ product }) => {
             <span className="font-light text-sm">{product.description}</span>
           </p>
 
-          <div>
-            <ItemCoun initial={1} stock={product.stock} onAdd={onAdd} />
+          <div className="flex justify-center">
+            {isInCount ? (
+              <ItemCoun initial={1} stock={product.stock} onAdd={onAdd} />
+            ) : (
+              <>
+                <Link to={"/cart"}>
+                  <button className="border font-bold text-black mr-5 mt-2 px-4 py-1 ">
+                    Ir Al carrito
+                  </button>
+                </Link>
+                <Link to={"/"}>
+                  <button className="border font-bold text-black  mt-2 px-4 py-1">
+                    Seguir comprando
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </section>
