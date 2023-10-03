@@ -4,7 +4,6 @@ const ItemCoun = ({ initial, stock, onAdd }) => {
   const { count, handleAdd, handleSubtract } = useCounter(initial, stock);
   return (
     <div className="flex flex-col items-center">
-      <h2>counter</h2>
       <div>
         <button className="border px-4" onClick={handleSubtract}>
           -

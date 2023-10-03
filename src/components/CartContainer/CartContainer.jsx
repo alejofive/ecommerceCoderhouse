@@ -2,6 +2,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
+import CartList from "../CartList/CartList";
 import Form from "../Form/Form";
 
 const CartContainer = () => {
@@ -58,26 +59,34 @@ const CartContainer = () => {
       {id !== "" && <h3>Se a generado la orden de compra{id}</h3>}
       {cartList.length > 0 ? (
         <div className="flex flex-col items-center">
-          <CartContainer />
+          <button
+            onClick={deleteCart}
+            className="bg-black px-10 py-2 text-xl font-semibold text-white mt-4"
+          >
+            Vaciar Carrito
+          </button>
+          <CartList />
+
+          {totalPrice() !== 0 && (
+            <h2 className="text-center  mt-5 text-xl font-bold">
+              Precio Total: {totalPrice()}$
+            </h2>
+          )}
+
           <Form
             handleAddCart={handleAddCart}
             handleOnChange={handleOnChange}
             dataForm={dataForm}
           />
-
-          {totalPrice() !== 0 && <h2>Precio Total:{totalPrice()}</h2>}
-
-          <button
-            onClick={deleteCart}
-            className="bg-black px-10 py-2 text-xl font-semibold text-white "
-          >
-            Vaciar Carrito
-          </button>
         </div>
       ) : (
-        <div>
-          <h2>No hay productos en el carrito</h2>
-          <Link to="/">Regresar</Link>
+        <div className="flex justify-center flex-col items-center h-screen">
+          <h2 className="text-center text-xl font-bold">
+            No hay productos en el carrito
+          </h2>
+          <Link className="mt-3 border border-black px-4" to="/">
+            Regresar
+          </Link>
         </div>
       )}
     </>

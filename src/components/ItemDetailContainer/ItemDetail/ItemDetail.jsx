@@ -10,7 +10,7 @@ const ItemDetail = ({ product }) => {
   const onAdd = (count) => {
     console.log("productos selecconados: ", count);
     setisInCount(false);
-    addCart({ ...product, quantity: count }); 
+    addCart({ ...product, quantity: count });
   };
 
   return (
@@ -23,9 +23,13 @@ const ItemDetail = ({ product }) => {
         </div>
         <div className="col-span-3">
           <p className="flex flex-col p-6">
-            <span className="font-medium text-2xl mb-2">{product.name}</span>
-            <span className="font-medium text-md"> ${product.price}</span>
-            <span className="font-light text-sm">{product.description}</span>
+            <span className="font-medium text-4xl"> ${product.price}</span>
+            <span className="font-medium text-2xl mt-3 mb-2">
+              {product.name}
+            </span>
+            <span className="font-light mt-4 text-sm">
+              {product.description}
+            </span>
           </p>
 
           <div className="flex justify-center">
