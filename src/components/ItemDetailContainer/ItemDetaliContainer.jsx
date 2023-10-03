@@ -7,16 +7,7 @@ const ItemDetaliContainer = () => {
   const [product, setProduct] = useState({});
   const { pid } = useParams();
 
-  console.log(pid);
-
   useEffect(() => {
-    /*     mFetch(Number(pid))
-      .then((resp) => {
-        console.log(resp);
-        setProduct(resp);
-      })
-      .catch((err) => console.log(err)); */
-
     const db = getFirestore();
     const queryDoc = doc(db, "products", pid);
     getDoc(queryDoc)

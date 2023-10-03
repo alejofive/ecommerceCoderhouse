@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
 import CartContainer from "./components/CartContainer/CartContainer";
 import ItemDetaliContainer from "./components/ItemDetailContainer/ItemDetaliContainer";
@@ -7,10 +7,6 @@ import NavBar from "./components/NavBar/NavBar";
 import CartContextProvaider from "./context/CartContext";
 
 function App() {
-  const onAdd = (count) => {
-    console.log(count);
-  };
-
   return (
     <>
       <Router>

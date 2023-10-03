@@ -5,12 +5,12 @@ import ItemCoun from "../../Counter/ItemCoun";
 
 const ItemDetail = ({ product }) => {
   const [isInCount, setisInCount] = useState(true);
-  const { agregarCarrito } = useCartContext();
+  const { addCart } = useCartContext();
 
   const onAdd = (count) => {
     console.log("productos selecconados: ", count);
     setisInCount(false);
-    agregarCarrito({ ...product, cantidad: count });
+    addCart({ ...product, quantity: count }); 
   };
 
   return (

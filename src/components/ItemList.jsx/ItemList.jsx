@@ -15,7 +15,7 @@ const handleProductFilter = ({ filterState, handleFilterChange, products }) => (
     <div className="flex flex-wrap gap-11 justify-center mt-10 ">
       {filterState === ""
         ? products.map((product) => <Item key={product.id} product={product} />)
-        : products 
+        : products
             .filter((product) =>
               product.name.toLowerCase().includes(filterState.toLowerCase())
             )
