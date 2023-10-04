@@ -1,6 +1,7 @@
 # React + Vite
 
 # Alejandro Garcia
+# alejofive555@gmail.com
 
 ## Libreria Externas:
 
