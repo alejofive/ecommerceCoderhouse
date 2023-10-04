@@ -7,6 +7,10 @@ const Form = ({ handleAddCart, handleOnChange, dataForm }) => {
   const isNameValid = (name) => {
     return name.length >= 4;
   };
+  const isPhoneValid = (phone) => {
+    const phonePattern = /^.{4,12}$^[0-9]+$/;
+    return phonePattern.test(phone);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,11 +24,17 @@ const Form = ({ handleAddCart, handleOnChange, dataForm }) => {
       alert("Ingrese un correo electrónico válido");
       return;
     }
+
+    if (!isPhoneValid(dataForm.phone)) {
+      alert("Ingrese su numero telefonico correctamente");
+      return;
+    }
+
     handleAddCart(e);
   };
 
   return (
-    <form className="mt-10 flex " onSubmit={handleSubmit}>
+    <form className="mt-10 flex pb-9" onSubmit={handleSubmit}>
       <input
         className="border-b border-black px-2 mr-4 rounded"
         type="text"
@@ -53,7 +63,9 @@ const Form = ({ handleAddCart, handleOnChange, dataForm }) => {
         required
       />
 
-      <button type="submit">Terminar compra</button>
+      <button type="submit" className="bg-green-600 text-white px-4 py-1 ">
+        Terminar compra
+      </button>
     </form>
   );
 };

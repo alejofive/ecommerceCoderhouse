@@ -52,7 +52,11 @@ const CartContainer = () => {
 
   return (
     <>
-      {id !== "" && <h3>Se a generado la orden de compra{id}</h3>}
+      {id !== "" && (
+        <h3 className="text-center text-3xl font-semibold">
+          La compra esta hecha: {id}
+        </h3>
+      )}
       {cartList.length > 0 ? (
         <div className="flex flex-col items-center">
           <button
