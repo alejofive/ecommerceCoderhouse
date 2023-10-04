@@ -1,12 +1,10 @@
 const Form = ({ handleAddCart, handleOnChange, dataForm }) => {
   const isEmailValid = (email) => {
-    // Utiliza una expresión regular para validar el correo electrónico.
     const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     return emailPattern.test(email);
   };
 
   const isNameValid = (name) => {
-    // Verifica si el nombre tiene al menos 4 caracteres.
     return name.length >= 4;
   };
 
@@ -22,8 +20,6 @@ const Form = ({ handleAddCart, handleOnChange, dataForm }) => {
       alert("Ingrese un correo electrónico válido");
       return;
     }
-
-    // Si las validaciones pasan, llama a la función handleAddCart.
     handleAddCart(e);
   };
 
@@ -57,7 +53,7 @@ const Form = ({ handleAddCart, handleOnChange, dataForm }) => {
         required
       />
 
-      <button type="submit">terminar compra</button>
+      <button type="submit">Terminar compra</button>
     </form>
   );
 };

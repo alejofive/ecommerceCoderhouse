@@ -8,7 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import ItemList from "../ItemList/ItemList";
+import { ItemList } from "../";
 
 const ItemListContainer = (props) => {
   const [products, setProduct] = useState([]);
@@ -25,18 +25,18 @@ const ItemListContainer = (props) => {
         where("category", "==", cid)
       );
       getDocs(queryCollectionFilter)
-        .then((respuesta) =>
+        .then((res) =>
           setProduct(
-            respuesta.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
+            res.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
           )
         )
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     } else {
       getDocs(queryCollections)
-        .then((respuesta) =>
+        .then((res) =>
           setProduct(
-            respuesta.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
+            res.docs.map((prod) => ({ id: prod.id, ...prod.data() }))
           )
         )
         .catch((err) => console.log(err))

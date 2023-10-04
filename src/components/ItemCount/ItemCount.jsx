@@ -1,6 +1,6 @@
 import { useCounter } from "../hook/useCounter";
 
-const ItemCoun = ({ initial, stock, onAdd }) => {
+const ItemCount = ({ initial, stock, onAdd }) => {
   const { count, handleAdd, handleSubtract } = useCounter(initial, stock);
   return (
     <div className="flex flex-col items-center">
@@ -25,4 +25,4 @@ const ItemCoun = ({ initial, stock, onAdd }) => {
   );
 };
 
-export default ItemCoun;
+export default ItemCount;

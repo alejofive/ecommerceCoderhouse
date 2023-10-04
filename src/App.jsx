@@ -1,16 +1,19 @@
 import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
-import CartContainer from "./components/CartContainer/CartContainer";
-import ItemDetaliContainer from "./components/ItemDetailContainer/ItemDetaliContainer";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import NavBar from "./components/NavBar/NavBar";
-import CartContextProvaider from "./context/CartContext";
+import {
+  CartContainer,
+  ItemDetailContainer,
+  ItemListContainer,
+  NavBar,
+} from "./components";
+
+import CartContextProvider from "./context/CartContext";
 
 function App() {
   return (
     <>
       <Router>
-        <CartContextProvaider>
+        <CartContextProvider>
           <NavBar />
           <Routes>
             <Route
@@ -19,11 +22,11 @@ function App() {
             />
             <Route path="/category/:cid" element={<ItemListContainer />} />
 
-            <Route path="/detalle/:pid" element={<ItemDetaliContainer />} />
+            <Route path="/detalle/:pid" element={<ItemDetailContainer />} />
 
             <Route path="/cart/" element={<CartContainer />} />
           </Routes>
-        </CartContextProvaider>
+        </CartContextProvider>
       </Router>
     </>
   );

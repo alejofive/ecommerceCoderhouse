@@ -1,9 +1,8 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CartList, Form } from "../";
 import { useCartContext } from "../../context/CartContext";
-import CartList from "../CartList/CartList";
-import Form from "../Form/Form";
 
 const CartContainer = () => {
   const [dataForm, setDataForm] = useState({
@@ -29,7 +28,6 @@ const CartContainer = () => {
 
     order.total = totalPrice();
 
-    // insetar un item(order)
     const queryDB = getFirestore();
     const ordersCollection = collection(queryDB, "orders");
     addDoc(ordersCollection, order)
@@ -44,8 +42,6 @@ const CartContainer = () => {
         deleteCart();
       });
   };
-
-  //Form
 
   const handleOnChange = (e) => {
     setDataForm({

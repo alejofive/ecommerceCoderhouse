@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail/ItemDetail";
 
-const ItemDetaliContainer = () => {
+const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
   const { pid } = useParams();
   const [loading, setLoading] = useState(true);
@@ -30,4 +30,4 @@ const ItemDetaliContainer = () => {
   );
 };
 
-export default ItemDetaliContainer;
+export default ItemDetailContainer;

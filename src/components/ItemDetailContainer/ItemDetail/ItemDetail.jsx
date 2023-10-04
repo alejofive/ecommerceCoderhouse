@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../../context/CartContext";
-import ItemCoun from "../../Counter/ItemCoun";
+import ItemCount from "../../ItemCount/ItemCount";
 
 const ItemDetail = ({ product }) => {
-  const [isInCount, setisInCount] = useState(true);
+  const [isInCount, setIsInCount] = useState(true);
   const { addCart } = useCartContext();
 
   const onAdd = (count) => {
     console.log("productos selecconados: ", count);
-    setisInCount(false);
+    setIsInCount(false);
     addCart({ ...product, quantity: count });
   };
 
@@ -34,7 +34,7 @@ const ItemDetail = ({ product }) => {
 
           <div className="flex justify-center">
             {isInCount ? (
-              <ItemCoun initial={1} stock={product.stock} onAdd={onAdd} />
+              <ItemCount initial={1} stock={product.stock} onAdd={onAdd} />
             ) : (
               <>
                 <Link to={"/cart"}>

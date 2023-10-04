@@ -1,5 +1,4 @@
-import Filter from "../Filter/Filter";
-import Item from "../Item/Item";
+import { Filter, Item } from "../";
 
 const handleProductFilter = ({ filterState, handleFilterChange, products }) => (
   <div className="flex flex-col items-center">
